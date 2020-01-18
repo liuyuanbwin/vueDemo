@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+  <script src="./lib/vue-resource-1.3.4.js"></script>
+  <link rel="stylesheet" href="./lib/animate.css">
+
+  <!-- 入场 bunceIn    离场 bunceOut -->
+
+</head>
+
+<body>
+  <div id="app">
+
+    <input type="button" value="toggle" @click="flag=!flag">
+    <!-- 需求:点击按钮, 让 h3 显示,再点击 h3 让 h3 隐藏 -->
+    <!-- <transition enter-active-class="animated bounceIn" leave-active-class="animated bounceOut">
+      <h3 v-if="flag">这是一个h3</h3>
+    </transition> -->
+
+    <!-- 使用 :duration="毫秒值" 来统一设置 入场 和 离场时候的动画时长 -->
+    <!-- <transition enter-active-class="bounceIn" leave-active-class="bounceOut" :duration="100">
+      <h3 v-if="flag" class="animated">这是一个h3</h3>
+    </transition> -->
+
+    <!-- 使用 :duration="对象" 来分别设置入场时长和离场时长 -->
+    <transition enter-active-class="bounceIn" leave-active-class="bounceOut" :duration="{enter:100,leave:400}">
+      <h3 v-if="flag" class="animated">这是一个h3</h3>
+    </transition>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        flag: true
+      },
+      methods: {}
+    });
+  </script>
+</body>
+
+</html>
