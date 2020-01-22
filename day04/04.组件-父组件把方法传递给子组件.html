@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./lib/vue-2.4.0.js"></script>
+  <script src="./lib/vue-resource-1.3.4.js"></script>
+  <link rel="stylesheet" href="./lib/bootstrap-3.3.7.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- 父组件向子组件传递方法, 使用的是事件绑定机制: v-on 当我们自定义了一个事件属性之后, 那么子组件就能够, 通过某些方法,来调用传递进去的 这个方法了 -->
+    <com2 @func123="show"></com2>
+  </div>
+  <template id="tmpl">
+    <div>
+      <h1>这是子组件</h1>
+      <input type="button" value="这是子组件中的按钮,点击触发父组件传递过来的 func 方法" @click="myclick">
+    </div>
+  </template>
+  <script>
+    //定义了一个字面量类型的组件模板对象
+    var com2 = {
+      template: '#tmpl', //通过指定了一个 Id 表示 说 要加载这个指定的 Id 的 template 元素中的内容,当做组件的 HTML 结构
+      data() {
+        return {
+          sonmsg: {
+            name: "小头儿子",
+            age: 6
+          }
+        }
+      },
+      methods: {
+        myclick() {
+          //当点击子组件的按钮的时候,如何 拿到父组件传递过来的 func 方法,并调用这个方法?
+          // emit 英文原意: 触发,调用,发射的意思
+          this.$emit("func123", this.sonmsg.name, this.sonmsg.age)
+        }
+      }
+    }
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        datamsgFormSon: null
+      },
+      methods: {
+        show(data, data2) {
+          console.log('调用了父组件身上的 show 方法  ' + data + data2)
+          this.datamsgFormSon = data
+        }
+      },
+      components: {
+        com2
+      }
+    });
+  </script>
+</body>
+
+</html>
