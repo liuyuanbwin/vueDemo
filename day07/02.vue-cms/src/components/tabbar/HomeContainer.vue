@@ -3,14 +3,16 @@
 
     <!-- 轮播图区域 -->
     <mt-swipe>
-      <mt-swipe-item v-for="item in lunbotulist" :key="item.url"><img :src="item.img" alt=""> </mt-swipe-item>
+      <mt-swipe-item v-for="item in lunbotulist" :key="item.id"><img :src="item.img" alt=""> </mt-swipe-item>
     </mt-swipe>
 
     <ul class="mui-table-view mui-grid-view mui-grid-9">
-      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+      <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+        <router-link to="/home/newslist">
           <img src="../../images/menu1.png" alt="" srcset="">
           <div class="mui-media-body">新闻资讯</div>
-        </a></li>
+        </router-link>
+      </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
           <img src="../../images/menu2.png" alt="" srcset="">
           <div class="mui-media-body">图片分享</div>
@@ -50,7 +52,7 @@
     },
     methods: {
       getLunbotu() {
-        this.$http.get('http://www.liulongbin.top:3005/api/getlunbo').then(result => {
+        this.$http.get('api/getlunbo').then(result => {
           // console.log(result.body)
           if (result.body.status === 0) {
             this.lunbotulist = result.body.message;
