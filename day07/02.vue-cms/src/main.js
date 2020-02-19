@@ -12,6 +12,8 @@ Vue.use(VueResource)
 
 Vue.http.options.root = 'http://www.liulongbin.top:3005'
 
+Vue.http.options.emulateJSON = true
+
 //导入时间插件
 import moment from 'moment';
 // 定义全局过滤器
@@ -27,19 +29,27 @@ import './lib/mui/css/icons-extra.css';
 import './lib/mui/fonts/mui-icons-extra.ttf'
 
 //按需导入 Mint-UI 中的组件
-import {
-  Header,
-  Swipe,
-  SwipeItem,
-  Button
-} from 'mint-ui'
+// import {
+//   Header,
+//   Swipe,
+//   SwipeItem,
+//   Button,
+//   Lazyload
+// } from 'mint-ui'
+// Vue.component(Header.name, Header)
+// Vue.component(Swipe.name, Swipe)
+// Vue.component(SwipeItem.name, SwipeItem)
+// Vue.component(Button.name, Button)
+// Vue.use(Lazyload)
+
+import MintUI from 'mint-ui';
+Vue.use(MintUI)
+import 'mint-ui/lib/style.css'
+
+import VuePreview from 'vue-preview';
+Vue.use(VuePreview)
 
 import app from './App.vue'
-Vue.component(Header.name, Header)
-Vue.component(Swipe.name, Swipe)
-Vue.component(SwipeItem.name, SwipeItem)
-Vue.component(Button.name, Button)
-
 import router from './router.js'
 
 

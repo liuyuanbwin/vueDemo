@@ -11,5 +11,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+  h3 {
+    color: greenyellow;
+  }
 </style>
