@@ -2,10 +2,7 @@
   <div>
 
     <!-- 轮播图区域 -->
-    <mt-swipe>
-      <mt-swipe-item v-for="item in lunbotulist" :key="item.id"><img :src="item.img" alt=""> </mt-swipe-item>
-    </mt-swipe>
-
+    <swiper :lunbotulist="lunbotulist" :isfull="true"></swiper>
     <ul class="mui-table-view mui-grid-view mui-grid-9">
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
         <router-link to="/home/newslist">
@@ -45,6 +42,7 @@
   import {
     Toast
   } from 'mint-ui';
+  import swiper from '../subcomponents/swiper.vue'
   export default {
     data() {
       return {
@@ -67,33 +65,13 @@
         })
       }
     },
+    components: {
+      swiper
+    }
   }
 </script>
 
 <style lang="scss" scoped>
-  .mint-swipe {
-    height: 200px;
-  }
-
-  .mint-swipe-item {
-    &:nth-child(1) {
-      background-color: red;
-    }
-
-    &:nth-child(2) {
-      background-color: yellowgreen;
-    }
-
-    &:nth-child(3) {
-      background-color: blueviolet;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
   .mui-grid-view.mui-grid-9 {
     background-color: white;
     border: none;
